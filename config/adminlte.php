@@ -135,7 +135,7 @@ return [
 
     'usermenu_enabled' => true,
     'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-dark',
+    'usermenu_header_class' => 'bg-dark text-white ',
     'usermenu_image' => false,
     'usermenu_desc' => false,
     'usermenu_profile_url' => false,
@@ -157,7 +157,7 @@ return [
     'layout_fixed_sidebar' => null,
     'layout_fixed_navbar' => null,
     'layout_fixed_footer' => null,
-    'layout_dark_mode' => true,
+    'layout_dark_mode' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -196,9 +196,9 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'bg-dark elevation-5',
     'classes_sidebar_nav' => '',
-    'classes_topnav' => 'navbar-dark navbar-dark-primary',
+    'classes_topnav' => 'bg-dark text-white',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
 
@@ -363,11 +363,20 @@ return [
                 ],
                 [
                     'text' => 'Listar',
-                    'route' => 'productos',
+                    'route' => 'sucursales',
                 ],
             ],
         ],
-        ['header' => 'account_settings'],
+        [
+            'text' => 'Usuarios',
+            'icon' => 'fas fa-users',
+            'submenu' => [
+                [
+                    'text' => 'Lista usuarios',
+                    'route' => 'usuarios',
+                ],
+            ],
+        ],
 
     ],
 

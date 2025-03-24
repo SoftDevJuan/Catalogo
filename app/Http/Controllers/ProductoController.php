@@ -93,7 +93,7 @@ class ProductoController extends Controller
     Producto::create($data);
 
     // Redirige con un mensaje de éxito
-    return redirect()->route('productos')->with('success', 'Producto creado correctamente');
+    return redirect()->route('productos')->with('message', 'Producto creado correctamente');
 }
 
 

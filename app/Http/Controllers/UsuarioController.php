@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sucursal;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
-class SucursalController extends Controller
+class UsuarioController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $sucursales = Sucursal::all();
-        return view('sucursal.index', compact('sucursales'));
+        $usuarios = User::all();
+        return view('usuario.index', compact('usuarios'));
     }
 
     /**
@@ -23,7 +23,7 @@ class SucursalController extends Controller
      */
     public function create()
     {
-        return view('sucursal.create');
+        return view('usuario.create');
     }
 
     /**
@@ -39,10 +39,10 @@ class SucursalController extends Controller
         ]);
 
         // Crea un nuevo producto
-        Sucursal::create($request->only('nombre', 'ubicacion'));
+        User::create($request->only('nombre', 'ubicacion'));
 
         // Redirige con un mensaje de éxito
-        return redirect()->route('sucursal')->with('message', 'Sucursal creada correctamente');
+        return redirect()->route('usuario')->with('message', 'User creada correctamente');
     }
 
     /**
@@ -58,9 +58,9 @@ class SucursalController extends Controller
      */
     public function edit(string $id)
     {
-        $sucursal = Sucursal::findOrFail($id);
-        return view('sucursal.edit', array(
-            'sucursal'=>$sucursal
+        $usuario = User::findOrFail($id);
+        return view('usuario.edit', array(
+            'usuario'=>$usuario
         ));
     }
 
@@ -71,12 +71,12 @@ class SucursalController extends Controller
     {
         $this->validate($request,['nombre'=>'required', 'ubicacion'=>'required']);
 
-        $sucursal = Sucursal::findOrFail($id);
-        $sucursal->nombre = $request->input('nombre');
-        $sucursal->ubicacion = $request->input('ubicacion');
-        $sucursal->save();
+        $usuario = User::findOrFail($id);
+        $usuario->nombre = $request->input('nombre');
+        $usuario->ubicacion = $request->input('ubicacion');
+        $usuario->save();
 
-        return redirect()->route('sucursales')->with('message', 'Sucursal actualizado correctamente');
+        return redirect()->route('usuarios')->with('message', 'User actualizado correctamente');
     }
 
     /**
@@ -84,13 +84,13 @@ class SucursalController extends Controller
      */
     public function destroy(string $id)
     {
-        $sucursal = Sucursal::findOrFail($id);
+        $usuario = User::findOrFail($id);
 
-        if(!$sucursal){
-            return redirect()->route('sucursales')->with('message', 'No se encontro la sucursal');
+        if(!$usuario){
+            return redirect()->route('usuarios')->with('message', 'No se encontro la usuario');
         }
 
-        $sucursal->delete();
-        return redirect()->route('sucursales')->with('message','La sucursal se dio de baja');
+        $usuario->delete();
+        return redirect()->route('usuarios')->with('message','La usuario se dio de baja');
     }
 }
